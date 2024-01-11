@@ -14,7 +14,8 @@ const config: Config = {
       parragraph: '#5c5c5c',
       primary: '#0077C2',
       secondary: '#59a5f5',
-      tertiary: '#c8ffff'
+      tertiary: '#c8ffff',
+      white: '#ffffff'
     }
   },
   plugins: []

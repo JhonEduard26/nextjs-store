@@ -1,3 +1,7 @@
+import ProductWrapper from '@/app/components/store/product-wrapper'
+import { getCollectionProducts, getCollections } from '@/app/services/shopify/collections'
+import { getProducts } from '@/app/services/shopify/products'
+
 interface Props {
   params: {
     categories: string[]
@@ -5,12 +9,21 @@ interface Props {
   searchParams?: Record<string, string>
 }
 
-export default function Category ({ params, searchParams }: Props) {
+export default async function Category ({ params, searchParams }: Props) {
+  let products = []
+
+  const collections = await getCollections()
+
+  if (params?.categories?.length > 0) {
+    const selectedCollectionId = collections.find((collection: any) => collection.handle === params.categories[0])?.id
+    products = await getCollectionProducts(selectedCollectionId as string)
+  } else {
+    products = await getProducts()
+  }
+
   return (
     <section className="p-5">
-      <h1>Category: {params.categories}</h1>
-
-      <p>search params: {JSON.stringify(searchParams, null, 2)}</p>
+      <ProductWrapper products={products} />
     </section>
   )
 }

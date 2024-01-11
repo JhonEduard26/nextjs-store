@@ -53,3 +53,18 @@ h4 {
   font-size: 1.5rem;
   line-height: 1.5rem;
 }
+
+.button {
+  padding: 1.6rem .8rem;
+  border-radius: 6px;
+  background-color: #0077C2;
+  color: #ffffff;
+}
+
+.button:hover {
+  background-color: #59a5f5;
+}
+
+.button:focus-within {
+  outline: 2px solid #c8ffff;
+}
